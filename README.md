@@ -1,6 +1,6 @@
 # LiteLoaderQQNT-OpenCar
 
-LiteLoaderQQNT插件，用于比较完善的防撤回。
+LiteLoaderQQNT插件。
 使用前需要安装[LiteLoaderQQNT](https://github.com/mo-jinran/LiteLoaderQQNT)，并在QQNT新版上使用。
 
 因工作原因暂无时间更新，如有能帮忙更新的欢迎提交PR。
