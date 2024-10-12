@@ -3,13 +3,27 @@
     "type": "extension",
     "name": "OpenCar",
     "slug": "xq_opencar",
-    "description": "OpenCar",
-    "version": "0.0.1",
-    "authors": [{
-        "name": "Flames",
-        "link": "https://blog.mnorg.cn"
-    }],
-    "platform": ["win32", "linux", "darwin"],
+    "description": "来不及解释了，快上车！",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Flames",
+            "link": "https://blog.mnorg.cn"
+        }
+    ],
+    "repository": {
+        "repo": "flamegreat/LiteLoaderQQNT-OpenCar",
+        "branch": "master",
+        "release": {
+            "tag": "0.1.0",
+            "file": "opencar.zip"
+        }
+    },
+    "platform": [
+        "win32",
+        "linux",
+        "darwin"
+    ],
     "injects": {
         "renderer": "./src/renderer.js",
         "main": "./src/main.js",

@@ -37,5 +37,24 @@ contextBridge.exposeInMainWorld("xq", {
                 }
             });
         });
-    }
+    },
+    // 获取下载目录路径
+    getDownloadPath: () => {
+        return new Promise((resolve, reject) => {
+            ipcRenderer.send('get-download-path');
+
+            ipcRenderer.once('get-download-path-reply', (event, path) => {
+                if (path instanceof Error) {
+                    reject(path);
+                } else {
+                    resolve(path);
+                }
+            });
+        });
+    },
+    openBrowser: (url) => {
+        return new Promise((resolve, reject) => {
+            ipcRenderer.send('open-browser', url);
+        });
+    },
 });
