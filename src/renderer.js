@@ -7,24 +7,58 @@ export const onSettingWindowCreated = view => {
 
     const new_navbar_item = `
 <div>
-    <setting-section data-title="关于" class="dev">
+    <setting-section data-title="" class="dev">
         <setting-panel>
             <setting-list data-direction="column">
                 <setting-item data-direction="row">
                     <div>
-                        <setting-text id="transitio-debug">开车</setting-text>
-                        <setting-text data-type="secondary">来不及解释了，快上车！</setting-text>
+                        <setting-text id="transitio-debug">OpenCar 技术群</setting-text>
+                        <setting-text data-type="secondary">群号：94234450</setting-text>
                     </div>
-                </setting-item><setting-divider data-direction="row"></setting-divider>
+                    <button class="q-button q-button--secondary q-button--small default-btn vue-component"
+                        id="opencar-open-qqgroup">
+                        <span class="q-button__slot-warp">进去瞅瞅</span>
+                    </button>
+                </setting-item>
+                <setting-divider data-direction="row"></setting-divider>
                 <setting-item data-direction="row">
                     <div>
-                        <setting-text>网页版OpenCar</setting-text>
+                        <setting-text>OpenCar 网页版</setting-text>
                         <setting-text data-type="secondary">https://opencar.mnorg.com</setting-text>
                     </div>
                     <button class="q-button q-button--secondary q-button--small default-btn vue-component"
                         id="opencar-open-web">
-                        <span class="q-button__slot-warp">打开链接</span>
+                        <span class="q-button__slot-warp">进去瞅瞅</span>
                     </button>
+                </setting-item>
+            </setting-list>
+        </setting-panel>
+    </setting-section>
+
+    <setting-section data-title="关于" class="versions">
+        <setting-panel>
+            <setting-list data-direction="row" class="current">
+                <setting-item data-direction="column">
+                    <setting-text>版本</setting-text>
+                    <setting-text data-type="secondary">
+                        <span class="opencar-link"
+                            data-link="https://github.com/flamegreat/LiteLoaderQQNT-OpenCar/releases">0.1.0</span>
+                    </setting-text>
+                </setting-item>
+                <setting-divider data-direction="column"></setting-divider>
+                <setting-item data-direction="column">
+                    <setting-text>作者</setting-text>
+                    <setting-text data-type="secondary">
+                        <span class="opencar-link" data-link="https://blog.mnorg.cn">Flaems</span>
+                    </setting-text>
+                </setting-item>
+                <setting-divider data-direction="column"></setting-divider>
+                <setting-item data-direction="column">
+                    <setting-text>反馈</setting-text>
+                    <setting-text data-type="secondary">
+                        <span class="opencar-link"
+                            data-link="https://github.com/flamegreat/LiteLoaderQQNT-OpenCar/issues">Github Issues</span>
+                    </setting-text>
                 </setting-item>
             </setting-list>
         </setting-panel>
@@ -45,6 +79,23 @@ export const onSettingWindowCreated = view => {
     node2.querySelector("#opencar-open-web").onclick = async () => {
         window.xq.openBrowser('https://opencar.mnorg.com');
     };
+
+    node2.querySelector("#opencar-open-qqgroup").onclick = async () => {
+        window.xq.openBrowser('https://qm.qq.com/q/epylX9g8py');
+    };
+
+    // Links
+    view.querySelectorAll(".opencar-link").forEach(link => {
+        const url = link.getAttribute("data-link");
+        link.setAttribute("title", url);
+        link.style.cursor = "pointer";
+        link.style.color = "#81bef5";
+
+        OpenCarLog("点击链接：" + url);
+        link.addEventListener("click", (_event) => {
+            window.xq.openBrowser(url);
+        });
+    });
 }
 
 onLoad();
@@ -63,6 +114,9 @@ async function OpenCar() {
 
     // 获取全部文件消息列表元素
     var elements = document.querySelector(".chat-msg-area__vlist")?.querySelectorAll(".file-element");
+
+    // 判断是否为空
+    if (!elements) return;
 
     elements.forEach(FileEl => {
         // 获取文件信息元素
